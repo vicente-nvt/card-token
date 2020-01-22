@@ -1,0 +1,17 @@
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.dll
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.pdb
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/nunit.engine.netstandard.dll
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Tests.deps.json
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Tests.runtimeconfig.json
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Tests.runtimeconfig.dev.json
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Tests.dll
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Tests.pdb
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Domain.dll
+/home/neto/git/card-token/CardToken.Tests/bin/Debug/netcoreapp2.2/CardToken.Domain.pdb
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.csprojAssemblyReference.cache
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.csproj.CoreCompileInputs.cache
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.AssemblyInfoInputs.cache
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.AssemblyInfo.cs
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.csproj.CopyComplete
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.dll
+/home/neto/git/card-token/CardToken.Tests/obj/Debug/netcoreapp2.2/CardToken.Tests.pdb

@@ -18,7 +18,7 @@ namespace CardToken.Tests.Domain
 
             Assert.AreEqual(_cardNumber, card.Number);
             Assert.AreEqual(_cvv, card.Cvv);
-            Assert.That(DateTime.UtcNow, Is.EqualTo(card.RegistrationDate).Within(1).Seconds);
+            Assert.That(DateTime.UtcNow, Is.EqualTo(card.RegistrationDateTime).Within(1).Seconds);
         }
 
         [Test]
@@ -57,6 +57,30 @@ namespace CardToken.Tests.Domain
             TestDelegate act = () => new Card(_cardNumber, invalidCvv);
 
             Assert.Throws<DomainException>(act, "Invalid CVV");
+        }
+
+        [Test]
+        public void Should_check_that_a_token_is_valid()
+        {
+            var card = new Card(_cardNumber, _cvv);
+            var registrationDate = card.RegistrationDateTime;
+            var token = card.Token;
+
+            var tokenIsValid = card.CheckIfTokenIsValid(token, int.Parse(_cvv), registrationDate);
+
+            Assert.IsTrue(tokenIsValid);
+        }
+
+        [Test]
+        public void Should_check_that_a_token_is_invalid()
+        {
+            var card = new Card(_cardNumber, _cvv);
+            var registrationDate = DateTime.UtcNow.AddMinutes(-14);
+            var token = card.Token;
+
+            var tokenIsValid = card.CheckIfTokenIsValid(token, int.Parse(_cvv), registrationDate);
+
+            Assert.IsFalse(tokenIsValid);
         }
     }
 }

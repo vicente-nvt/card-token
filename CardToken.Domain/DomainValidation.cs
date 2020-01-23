@@ -1,23 +1,23 @@
 namespace CardToken.Domain
 {
-    public class Validation
+    public class DomainValidation
     {
         public bool Valid { get; private set; }
 
-        public Validation(bool valid)
+        public DomainValidation(bool valid)
         {
             Valid = valid;
         }
 
-        public static Validation When(bool condition)
+        public static DomainValidation When(bool condition)
         {
             if (condition)
-                return new Validation(false);
+                return new DomainValidation(false);
 
-            return new Validation(true);
+            return new DomainValidation(true);
         }
 
-        public Validation OrWhen(bool condition)
+        public DomainValidation OrWhen(bool condition)
         {
             if (condition)
                 Valid = false;

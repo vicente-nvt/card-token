@@ -1,4 +1,4 @@
-﻿namespace CardToken.Application
+﻿namespace CardToken.Application.CardCreation
 {
     public interface CardCreation
     {

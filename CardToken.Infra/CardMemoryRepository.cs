@@ -1,4 +1,5 @@
 ﻿using CardToken.Application;
+using CardToken.Common;
 using CardToken.Domain;
 using System.Collections.Generic;
 
@@ -12,10 +13,15 @@ namespace CardToken.Infra
         {
             CardSet = new Dictionary<string, Card>();
         }
-        
+
         public void Add(Card card)
         {
-            CardSet.Add(card.Token, card);
+            CardSet.Add(card.RegistrationDateTime.ToStringWithMiliseconds(), card);
+        }
+
+        public Card GetCardByRegistrationDate(string registrationDateTime)
+        {
+            return CardSet.ContainsKey(registrationDateTime) ? CardSet[registrationDateTime] : null;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using CardToken.Application;
+using CardToken.Application.CardCreation;
+using CardToken.Application.CardValidation;
 using CardToken.Infra;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,7 @@ namespace CardToken.WebAPI
         private void ConfigureDependencyInjection(IServiceCollection services)
         {
             services.AddScoped<CardCreation, CardCreator>();
+            services.AddScoped<CardValidation, CardValidator>();
             services.AddSingleton<CardRepository, CardMemoryRepository>(); //I left this dependency injection as singleton because I'm using a dictionary as a database mock;
         }
 

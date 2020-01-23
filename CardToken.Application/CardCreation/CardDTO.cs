@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace CardToken.Application
+namespace CardToken.Application.CardCreation
 {
     public class CardDTO
     {
         public string Token { get; set; }
-        public DateTime RegistrationDate { get; set; }
+        public string RegistrationDate { get; set; }
     }
 }

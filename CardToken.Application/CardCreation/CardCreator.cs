@@ -1,6 +1,7 @@
-﻿using CardToken.Domain;
+﻿using CardToken.Common;
+using CardToken.Domain;
 
-namespace CardToken.Application
+namespace CardToken.Application.CardCreation
 {
     public class CardCreator : CardCreation
     {
@@ -13,7 +14,15 @@ namespace CardToken.Application
 
         public CardDTO CreateNewCard(string cardNumber, string cvv)
         {
-            var card = new Card(cardNumber, cvv);
+            Card card;
+            try
+            {
+                card = new Card(cardNumber, cvv);
+            }
+            catch (DomainException e)
+            {
+                throw new ApplicationException(e.Message);
+            }
 
             _cardRepository.Add(card);
 
@@ -25,7 +34,7 @@ namespace CardToken.Application
             return new CardDTO
             {
                 Token = card.Token,
-                RegistrationDate = card.RegistrationDate
+                RegistrationDate = card.RegistrationDateTime.ToStringWithMiliseconds()
             };
         }
     }

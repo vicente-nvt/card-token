@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardToken.Infra", "CardToke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardToken.WebAPI", "CardToken.WebAPI\CardToken.WebAPI.csproj", "{61D1767E-1CC3-4323-919E-B24C5DAF099F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardToken.Common", "CardToken.Common\CardToken.Common.csproj", "{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{61D1767E-1CC3-4323-919E-B24C5DAF099F}.Release|x64.Build.0 = Release|Any CPU
 		{61D1767E-1CC3-4323-919E-B24C5DAF099F}.Release|x86.ActiveCfg = Release|Any CPU
 		{61D1767E-1CC3-4323-919E-B24C5DAF099F}.Release|x86.Build.0 = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|x64.Build.0 = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Debug|x86.Build.0 = Debug|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|x64.ActiveCfg = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|x64.Build.0 = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|x86.ActiveCfg = Release|Any CPU
+		{6E0B2EB9-BF64-47AF-9D3E-D144C79E3032}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

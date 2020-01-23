@@ -1,15 +1,18 @@
 ﻿using CardToken.Application;
+using CardToken.Application.CardCreation;
+using CardToken.Common;
 using CardToken.Domain;
 using CardToken.Tests.Application.Builders;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 
 namespace CardToken.Tests.Application
 {
     [TestFixture]
-    public class CardCreatorTests
+    public class CardCreationTests
     {
-        private CardCreator _cardCreator;
+        private CardCreation _cardCreator;
         private string _cardNumber;
         private string _cvv;
         private CardRepository _cardRepository;
@@ -33,13 +36,13 @@ namespace CardToken.Tests.Application
             var cardExpected = new CardDTO
             {
                 Token = card.Token,
-                RegistrationDate = card.RegistrationDate
+                RegistrationDate = card.RegistrationDateTime.ToStringWithMiliseconds()
             };
 
             var cardCreated = _cardCreator.CreateNewCard(_cardNumber, _cvv);
 
             Assert.AreEqual(cardExpected.Token, cardCreated.Token);
-            Assert.That(cardExpected.RegistrationDate, Is.EqualTo(card.RegistrationDate).Within(1).Seconds);
+            Assert.That(Convert.ToDateTime(cardExpected.RegistrationDate), Is.EqualTo(card.RegistrationDateTime).Within(1).Seconds);
         }
 
         [Test]

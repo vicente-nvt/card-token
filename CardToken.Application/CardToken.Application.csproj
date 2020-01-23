@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CardToken.Common\CardToken.Common.csproj" />
     <ProjectReference Include="..\CardToken.Domain\CardToken.Domain.csproj" />
   </ItemGroup>
 

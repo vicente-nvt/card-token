@@ -120,5 +120,18 @@ namespace CardToken.Tests.Application
 
             Assert.Throws<ApplicationException>(act, "Invalid Token");
         }
+
+        [TestCase("1234")]
+        [TestCase("")]
+        [TestCase(" ")]
+        public void Should_check_if_registration_date_is_valid(string invalidRegistrationDate)
+        {
+            var token = "1234";
+            var cvv = "1234";
+
+            TestDelegate act = () => _cardValidation.Validate(token, cvv, invalidRegistrationDate);
+
+            Assert.Throws<ApplicationException>(act, "Invalid registration date");
+        }
     }
 }

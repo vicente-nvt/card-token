@@ -14,7 +14,7 @@ namespace CardToken.Application.CardValidation
 
         public ValidationDTO Validate(string token, string cvv, string registrationDateTime)
         {
-            ValidateInputs(token, cvv);
+            CheckInputs(token, cvv, registrationDateTime);
 
             var registrationDateTimeConverted = Convert.ToDateTime(registrationDateTime);
 
@@ -29,7 +29,7 @@ namespace CardToken.Application.CardValidation
             };
         }
 
-        private static void ValidateInputs(string token, string cvv)
+        private static void CheckInputs(string token, string cvv, string registrationDateTime)
         {
             ApplicationValidation.When(string.IsNullOrWhiteSpace(token))
                 .OrWhen(token != null && Regex.Matches(token, @"[a-zA-Z]").Count > 0)
@@ -39,6 +39,15 @@ namespace CardToken.Application.CardValidation
                 .OrWhen(cvv != null && cvv.Length > 5)
                 .OrWhen(cvv != null && Regex.Matches(cvv, @"[a-zA-Z]").Count > 0)
                 .ThenThrows("Invalid cvv");
+
+            try
+            {
+                Convert.ToDateTime(registrationDateTime);
+            }
+            catch (Exception)
+            {
+                throw new ApplicationException("Invalid date registration");
+            }
         }
 
         private bool CheckRegistrationDateLimit(DateTime registrationDateTimeConverted)

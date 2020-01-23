@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using CardToken.Domain;
 using NUnit.Framework;
 
@@ -16,7 +17,23 @@ namespace CardToken.Tests
 
             Assert.AreEqual(_cardNumber, card.Number);
             Assert.AreEqual(_cvv, card.Cvv);
-            Assert.That(DateTime.Now, Is.EqualTo(card.RegistrationData).Within(1).Seconds);
+            Assert.That(DateTime.UtcNow, Is.EqualTo(card.RegistrationDate).Within(1).Seconds);
+        }
+
+        [Test]
+        public void Should_create_a_card_with_token() {
+            var date = DateTime.UtcNow;
+            var dataForTokenGeneration = $@"{_cardNumber}{date.Year.ToString()}{date.Month.ToString()}{date.Day.ToString()}{date.Hour.ToString()}{date.Minute.ToString()}";
+            var arrayOfString = dataForTokenGeneration.Split("");
+            var arrayOfInteger = arrayOfString.Select(item => Int32.Parse(item)).ToArray();
+            var absoluteDifference = 5;
+            var shortArray = ArrayShortener.GetByAbsoluteDifference(arrayOfInteger, absoluteDifference);
+            var numberOfRotations = Int32.Parse(_cvv);
+            var token = ArrayRotation.RotateArray(shortArray, numberOfRotations);
+
+            var card = new Card(_cardNumber, _cvv);
+
+            Assert.AreEqual(token, card.Token);
         }
 
         [TestCase("")]

@@ -1,8 +1,7 @@
 namespace CardToken.Domain
 {
-    public class ArrayRotation
+    public static class ArrayRotation
     {
-
         private static int[] ReverseArray(int[] array, int start, int end)
         {
             var resultArray = array;

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace CardToken.Domain
 {
@@ -6,7 +7,8 @@ namespace CardToken.Domain
     {
         public string Number { get; }
         public string Cvv { get; }
-        public DateTime RegistrationData { get; }
+        public DateTime RegistrationDate { get; }
+        public string Token { get; private set; }
 
         public Card(string cardNumber, string cvv)
         {
@@ -17,7 +19,26 @@ namespace CardToken.Domain
 
             Number = cardNumber;
             Cvv = cvv;
-            RegistrationData = DateTime.Now;
+            RegistrationDate = DateTime.UtcNow;
+            CalculateToken();
+        }
+
+        private void CalculateToken() {
+            var dataForToken = $@"{Number}
+                                  {RegistrationDate.Year.ToString("YYYY")}
+                                  {RegistrationDate.Month.ToString("mm")}
+                                  {RegistrationDate.Day.ToString("DD")}
+                                  {RegistrationDate.Hour.ToString("HH")}
+                                  {RegistrationDate.Minute.ToString("MM")}";
+
+            var arrayOfString = dataForToken.Split();
+            var arrayOfInteger = arrayOfString.Select(item => Int32.Parse(item)).ToArray();
+            var absoluteDifference = 5;
+            var shortArray = ArrayShortener.GetByAbsoluteDifference(arrayOfInteger, absoluteDifference);
+            var numberOfRotations = Int32.Parse(Cvv);
+            var token = ArrayRotation.RotateArray(shortArray, numberOfRotations);
+
+            Token = string.Join("", token.Select(item => item.ToString()));
         }
     }
 }

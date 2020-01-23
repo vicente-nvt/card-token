@@ -1,9 +1,8 @@
-using CardToken.Domain;
+using CardToken.Domain.TokenGeneration;
 using NUnit.Framework;
 
-namespace CardToken.Tests
+namespace CardToken.Tests.Domain
 {
-
     [TestFixture]
     public class ArrayRotationTests
     {

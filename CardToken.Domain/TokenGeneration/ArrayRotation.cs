@@ -1,4 +1,4 @@
-namespace CardToken.Domain
+namespace CardToken.Domain.TokenGeneration
 {
     public static class ArrayRotation
     {
@@ -10,7 +10,7 @@ namespace CardToken.Domain
                 int temp = resultArray[start];
                 resultArray[start] = resultArray[end];
                 resultArray[end] = temp;
-                start ++;
+                start++;
                 end--;
              }
             return resultArray;

@@ -1,5 +1,3 @@
-using CardToken.Domain;
-
 namespace CardToken.Domain
 {
     public class Validation
@@ -8,7 +6,7 @@ namespace CardToken.Domain
 
         public Validation(bool valid)
         {
-            this.Valid = valid;
+            Valid = valid;
         }
 
         public static Validation When(bool condition)
@@ -17,6 +15,14 @@ namespace CardToken.Domain
                 return new Validation(false);
 
             return new Validation(true);
+        }
+
+        public Validation OrWhen(bool condition)
+        {
+            if (condition)
+                Valid = false;
+
+            return this;
         }
 
         public void ThenThrows(string message)

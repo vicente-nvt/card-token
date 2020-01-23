@@ -1,5 +1,7 @@
+using CardToken.Domain.TokenGeneration;
 using System;
-using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CardToken.Domain
 {
@@ -9,13 +11,19 @@ namespace CardToken.Domain
         public string Cvv { get; }
         public DateTime RegistrationDate { get; }
         public string Token { get; private set; }
+        public int AbsoluteDifference => 5;
 
         public Card(string cardNumber, string cvv)
         {
-            Validation.When(string.IsNullOrWhiteSpace(cardNumber)).ThenThrows("Card number is missing");
-            Validation.When(cardNumber.Length > 16).ThenThrows("Invalid card number");
-            Validation.When(string.IsNullOrWhiteSpace(cvv)).ThenThrows("CVV is missing");
-            Validation.When(cvv.Length > 5).ThenThrows("Invalid cvv");
+            Validation.When(string.IsNullOrWhiteSpace(cardNumber))
+                .OrWhen(cardNumber != null && cardNumber.Length > 16)
+                .OrWhen(cardNumber != null && Regex.Matches(cardNumber, @"[a-zA-Z]").Count > 0)
+                .ThenThrows("Invalid card number");
+
+            Validation.When(string.IsNullOrWhiteSpace(cvv))
+                .OrWhen(cvv != null && cvv.Length > 5)
+                .OrWhen(cvv != null && Regex.Matches(cvv, @"[a-zA-Z]").Count > 0)
+                .ThenThrows("Invalid cvv");
 
             Number = cardNumber;
             Cvv = cvv;
@@ -24,21 +32,17 @@ namespace CardToken.Domain
         }
 
         private void CalculateToken() {
-            var dataForToken = $@"{Number}
-                                  {RegistrationDate.Year.ToString("YYYY")}
-                                  {RegistrationDate.Month.ToString("mm")}
-                                  {RegistrationDate.Day.ToString("DD")}
-                                  {RegistrationDate.Hour.ToString("HH")}
-                                  {RegistrationDate.Minute.ToString("MM")}";
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append(Number);
+            stringBuilder.Append(RegistrationDate.Year.ToString());
+            stringBuilder.Append(RegistrationDate.Month.ToString("d2"));
+            stringBuilder.Append(RegistrationDate.Day.ToString("d2"));
+            stringBuilder.Append(RegistrationDate.Hour.ToString("d2"));
+            stringBuilder.Append(RegistrationDate.Minute.ToString("d2"));
+            var dataForToken = stringBuilder.ToString();
 
-            var arrayOfString = dataForToken.Split();
-            var arrayOfInteger = arrayOfString.Select(item => Int32.Parse(item)).ToArray();
-            var absoluteDifference = 5;
-            var shortArray = ArrayShortener.GetByAbsoluteDifference(arrayOfInteger, absoluteDifference);
-            var numberOfRotations = Int32.Parse(Cvv);
-            var token = ArrayRotation.RotateArray(shortArray, numberOfRotations);
-
-            Token = string.Join("", token.Select(item => item.ToString()));
+            int numberOfRotations = int.Parse(Cvv);
+            Token = TokenGenerator.Generate(dataForToken, numberOfRotations, AbsoluteDifference);
         }
     }
 }

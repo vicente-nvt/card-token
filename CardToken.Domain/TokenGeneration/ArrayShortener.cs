@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace CardToken.Domain
+namespace CardToken.Domain.TokenGeneration
 {
     public static class ArrayShortener
     {

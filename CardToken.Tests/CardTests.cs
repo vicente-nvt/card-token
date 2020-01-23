@@ -29,6 +29,16 @@ namespace CardToken.Tests
             Assert.Throws<DomainException>(act, "Card number is missing");
         }
 
+        [Test]
+        public void Should_not_create_a_card_with_an_invalid_number()
+        {
+            var invalidNumber = "55446633885599880";
+
+            TestDelegate act = () => new Card(invalidNumber, _cvv);
+
+            Assert.Throws<DomainException>(act, "Invalid card number");
+        }
+
         [TestCase("")]
         [TestCase(" ")]
         [TestCase(null)]
@@ -37,6 +47,16 @@ namespace CardToken.Tests
             TestDelegate act = () => new Card(_cardNumber, cvv);
 
             Assert.Throws<DomainException>(act, "CVV is missing");
+        }
+
+        [Test]
+        public void Should_not_create_a_card_with_an_invalid_cvv()
+        {
+            var invalidCvv = "678990";
+
+            TestDelegate act = () => new Card(_cardNumber, invalidCvv);
+
+            Assert.Throws<DomainException>(act, "Invalid CVV");
         }
     }
 }

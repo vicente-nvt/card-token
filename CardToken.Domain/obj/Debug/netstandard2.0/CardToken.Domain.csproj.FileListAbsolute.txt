@@ -1,9 +1,0 @@
-/home/neto/git/card-token/CardToken.Domain/bin/Debug/netstandard2.0/CardToken.Domain.deps.json
-/home/neto/git/card-token/CardToken.Domain/bin/Debug/netstandard2.0/CardToken.Domain.dll
-/home/neto/git/card-token/CardToken.Domain/bin/Debug/netstandard2.0/CardToken.Domain.pdb
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.csprojAssemblyReference.cache
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.csproj.CoreCompileInputs.cache
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.AssemblyInfoInputs.cache
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.AssemblyInfo.cs
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.dll
-/home/neto/git/card-token/CardToken.Domain/obj/Debug/netstandard2.0/CardToken.Domain.pdb

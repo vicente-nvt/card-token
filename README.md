@@ -15,7 +15,7 @@ After cloning the project, you should run the command below
 
 ### How to use it
 
-Once yout have been started the service, you will be able to find more information about APIs [here](https://localhost:5001/swagger/)
+Once you have been started the service, you will be able to find more information about APIs [here](https://localhost:5001/swagger/)
 
 To make requests, a token (JWT) is necessary.
 Bellow is a token for your tests:

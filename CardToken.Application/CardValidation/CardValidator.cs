@@ -19,13 +19,13 @@ namespace CardToken.Application.CardValidation
             var registrationDateTimeConverted = Convert.ToDateTime(registrationDateTime);
 
             if (!CheckRegistrationDateLimit(registrationDateTimeConverted))
-                return new ValidationDTO { IsValid = false };
+                return new ValidationDTO { Validated = false };
 
             var card = _cardRepository.GetCardByRegistrationDate(registrationDateTime);
 
             return new ValidationDTO
             {
-                IsValid = card != null && card.CheckIfTokenIsValid(token, int.Parse(cvv), registrationDateTimeConverted)
+                Validated = card != null && card.CheckIfTokenIsValid(token, int.Parse(cvv), registrationDateTimeConverted)
             };
         }
 

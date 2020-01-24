@@ -2,6 +2,6 @@
 {
     public class ValidationDTO
     {
-        public bool IsValid { get; set; }
+        public bool Validated { get; set; }
     }
 }

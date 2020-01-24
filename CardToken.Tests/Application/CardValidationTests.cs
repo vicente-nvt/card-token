@@ -36,7 +36,7 @@ namespace CardToken.Tests.Application
 
             var validationDto = _cardValidation.Validate(card.Token, card.Cvv, card.RegistrationDateTime.ToStringWithMiliseconds());
 
-            Assert.IsTrue(validationDto.IsValid);
+            Assert.IsTrue(validationDto.Validated);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace CardToken.Tests.Application
 
             var validationDto = _cardValidation.Validate(oneCard.Token, oneCard.Cvv, oneCard.RegistrationDateTime.ToStringWithMiliseconds());
 
-            Assert.IsFalse(validationDto.IsValid);
+            Assert.IsFalse(validationDto.Validated);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace CardToken.Tests.Application
 
             var validationDto = _cardValidation.Validate(card.Token, card.Cvv, invalidRegistrationDateTime.ToStringWithMiliseconds());
 
-            Assert.IsFalse(validationDto.IsValid);
+            Assert.IsFalse(validationDto.Validated);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace CardToken.Tests.Application
 
             var validationDto = _cardValidation.Validate(card.Token, card.Cvv, registrationDateTime.ToStringWithMiliseconds());
 
-            Assert.IsFalse(validationDto.IsValid);
+            Assert.IsFalse(validationDto.Validated);
         }
 
         [TestCase("")]

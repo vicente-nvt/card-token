@@ -1,4 +1,5 @@
-﻿using CardToken.Application.CardCreation;
+﻿using Microsoft.AspNetCore.Authorization;
+using CardToken.Application.CardCreation;
 using CardToken.Application.CardValidation;
 using CardToken.WebAPI.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ namespace CardToken.WebAPI.DTOs
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CardController : ControllerBase
     {
         private CardCreation _cardCreation;

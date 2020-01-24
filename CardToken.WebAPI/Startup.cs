@@ -1,4 +1,6 @@
-﻿using CardToken.Application;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using CardToken.Application;
 using CardToken.Application.CardCreation;
 using CardToken.Application.CardValidation;
 using CardToken.Infra;
@@ -50,6 +52,7 @@ namespace CardToken.WebAPI
             });
 
             ConfigureDependencyInjection(services);
+            ConfigureAuthorization(services);
         }
 
         private void ConfigureDependencyInjection(IServiceCollection services)
@@ -57,6 +60,27 @@ namespace CardToken.WebAPI
             services.AddScoped<CardCreation, CardCreator>();
             services.AddScoped<CardValidation, CardValidator>();
             services.AddSingleton<CardRepository, CardMemoryRepository>(); //I left this dependency injection as singleton because I'm using a dictionary as a database mock;
+        }
+
+        private void ConfigureAuthorization(IServiceCollection services)
+        {
+            var secret = Configuration.GetSection("Secret").Value;
+            services
+                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SigningCredentials(
+                            new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secret)),
+                            SecurityAlgorithms.HmacSha256Signature).Key
+                    };
+                });
+
+            services.AddAuthorization();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -67,6 +91,7 @@ namespace CardToken.WebAPI
                 app.UseHsts();
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
 
             app.UseSwagger();
